@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prins Bhuva's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+
+        .transition-transform-hover {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .transition-transform-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-link-hover {
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .contact-link-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styles for the slider and fullscreen modal */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-images img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .slider-button.prev {
+            left: 0.5rem;
+        }
+        .slider-button.next {
+            right: 0.5rem;
+        }
+        .fullscreen-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .fullscreen-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        /* CSS for the glowing text effect */
+        @keyframes pulse-shadow {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+        }
+        .text-glow {
+            animation: pulse-shadow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">Prins Bhuva's Art Gallery</a>
+            <div class="space-x-4 hidden md:block">
+                <a href="#portfolio" class="text-gray-600 hover:text-gray-900 font-medium">Portfolio</a>
+                <a href="#contact" class="text-gray-600 hover:text-gray-900 font-medium">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gradient-bg text-white py-24 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 text-glow">
+                    Studio-Quality AI Product Photography
+                </h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                    Elevate your products with custom, high-quality visuals for a professional look and feel.
+                </p>
+                <a href="#portfolio" class="inline-block bg-white text-gray-900 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 px-6 bg-gray-100">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Some Demo Work For Products</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 transition-transform-hover">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Raw Photo</h3>
+                                <div class="w-full h-[300px] rounded-lg overflow-hidden">
+                                    <img src="images/item1/rp1.jpg" alt="Raw Photo" class="w-full h-full object-cover shadow-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Crafted</h3>
+                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                    <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
+                                            onclick="openCurrentImage(this.parentNode)">
+                                        <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
+                                    </button>
+
+                                    <div class="slider-images flex h-full">
+                                        <img src="images/item1/cp1-1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-1.jpg')">
+                                        <img src="images/item1/cp1-2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-2.jpg')">
+                                        <img src="images/item1/cp1-3.jpg" alt="Crafted Image 3" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-3.jpg')">
+                                        <img src="images/item1/cp1-4.jpg" alt="Crafted Image 4" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-4.jpg')">
+                                        <img src="images/item1/cp1-5.jpg" alt="Crafted Image 5" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-5.jpg')">
+                                    </div>
+                                    <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
+                                    <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 transition-transform-hover">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Raw Photo</h3>
+                                <div class="w-full h-[300px] rounded-lg overflow-hidden">
+                                    <img src="images/item2/rp.jpg" alt="Raw Photo" class="w-full h-full object-cover shadow-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Crafted</h3>
+                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                    <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
+                                            onclick="openCurrentImage(this.parentNode)">
+                                        <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
+                                    </button>
+                                    <div class="slider-images flex h-full">
+                                        <img src="images/item2/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item2/cp1.jpg')">
+                                    </div>
+                                    <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
+                                    <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 transition-transform-hover">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Raw Photo</h3>
+                                <div class="w-full h-[300px] rounded-lg overflow-hidden">
+                                    <img src="images/item3/rp.jpg" alt="Raw Photo" class="w-full h-full object-cover shadow-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-center mb-2">Crafted</h3>
+                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                    <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
+                                            onclick="openCurrentImage(this.parentNode)">
+                                            <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
+                                        </button>
+                                    <div class="slider-images flex h-full">
+                                        <img src="images/item3/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item3/cp1.jpg')">
+                                        <img src="images/item3/cp2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openFullscreen('images/item3/cp2.jpg')">
+                                    </div>
+                                    <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
+                                    <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 px-6 gradient-bg text-white">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get in Touch</h2>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-8 shadow-lg flex flex-col justify-center text-center space-y-6 md:col-span-2">
+                        <a href="tel:+919106504037" class="contact-link-hover flex items-center justify-center space-x-3 bg-green-500 text-white font-semibold py-4 px-6 rounded-lg hover:bg-green-600 transition-colors duration-300">
+                            <span>Call Me</span>
+                        </a>
+
+                        <a href="https://wa.me/919106504037" target="_blank" class="contact-link-hover flex items-center justify-center space-x-3 bg-green-500 text-white font-semibold py-4 px-6 rounded-lg hover:bg-green-600 transition-colors duration-300">
+                            <span>WhatsApp Me</span>
+                        </a>
+                        
+                        <a href="mailto:prinsbhuva2004@gmail.com" class="contact-link-hover flex items-center justify-center space-x-3 bg-green-500 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                            <span>Mail Me</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 AI Art Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="fullscreenModal" class="fullscreen-modal hidden">
+        <button id="closeModal" class="absolute top-4 right-6 text-white text-4xl font-light leading-none z-10">&times;</button>
+        <img id="fullscreenImage" src="" alt="Fullscreen AI Image">
+    </div>
+
+    <script>
+        // JS for the image sliders
+        function moveSlide(sliderContainer, direction) {
+            const sliderImages = sliderContainer.querySelector('.slider-images');
+            const images = sliderImages.querySelectorAll('img');
+            const totalImages = images.length;
+            const currentTransform = sliderImages.style.transform;
+            let currentImageIndex = 0;
+
+            if (currentTransform) {
+                const regex = /translateX\(([-\d.]+)%\)/;
+                const match = currentTransform.match(regex);
+                if (match) {
+                    const transformValue = parseFloat(match[1]);
+                    currentImageIndex = -transformValue / 100;
+                }
+            }
+
+            let newIndex = currentImageIndex + direction;
+            if (newIndex >= totalImages) {
+                newIndex = 0; // Loop to the first image
+            } else if (newIndex < 0) {
+                newIndex = totalImages - 1; // Loop to the last image
+            }
+
+            sliderImages.style.transform = `translateX(${-newIndex * 100}%)`;
+        }
+
+        // JS for the full-screen modal
+        const fullscreenModal = document.getElementById('fullscreenModal');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const closeModalButton = document.getElementById('closeModal');
+
+        function openFullscreen(imageUrl) {
+            fullscreenImage.src = imageUrl;
+            fullscreenModal.classList.remove('hidden');
+        }
+
+        function closeFullscreen() {
+            fullscreenModal.classList.add('hidden');
+        }
+
+        closeModalButton.addEventListener('click', closeFullscreen);
+
+        // Close modal when clicking outside the image
+        fullscreenModal.addEventListener('click', (e) => {
+            if (e.target === fullscreenModal) {
+                closeFullscreen();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+        });
+
+        // Track current slide index for each slider
+        let currentSlideIndex = 0;
+
+        function moveSlide(container, step) {
+            const images = container.querySelectorAll('.slider-images img');
+            const total = images.length;
+            currentSlideIndex = (currentSlideIndex + step + total) % total;
+
+            // shift images
+            container.querySelector('.slider-images').style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        }
+
+        function openCurrentImage(container) {
+            const images = container.querySelectorAll('.slider-images img');
+            const img = images[currentSlideIndex];
+            openFullscreen(img.src);
+        }
+    </script>
+</body>
+</html>
