@@ -84,9 +84,28 @@
             align-items: center;
             z-index: 100;
         }
-        .fullscreen-modal img {
-            max-width: 90%;
-            max-height: 90%;
+        .fullscreen-modal .fullscreen-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fullscreen-slider-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .fullscreen-slider-images {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .fullscreen-slider-images img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
             object-fit: contain;
         }
         
@@ -143,18 +162,18 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-center mb-2">Crafted</h3>
-                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                <div class="slider-container w-full h-[300px] rounded-lg" data-current-index="0">
                                     <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
-                                            onclick="openCurrentImage(this.parentNode)">
+                                            onclick="openSliderInFullscreen(this.parentNode)">
                                         <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
                                     </button>
 
                                     <div class="slider-images flex h-full">
-                                        <img src="images/item1/cp1-1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-1.jpg')">
-                                        <img src="images/item1/cp1-2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-2.jpg')">
-                                        <img src="images/item1/cp1-3.jpg" alt="Crafted Image 3" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-3.jpg')">
-                                        <img src="images/item1/cp1-4.jpg" alt="Crafted Image 4" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-4.jpg')">
-                                        <img src="images/item1/cp1-5.jpg" alt="Crafted Image 5" class="rounded-lg" onclick="openFullscreen('images/item1/cp1-5.jpg')">
+                                        <img src="images/item1/cp1-1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 0)">
+                                        <img src="images/item1/cp1-2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 1)">
+                                        <img src="images/item1/cp1-3.jpg" alt="Crafted Image 3" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 2)">
+                                        <img src="images/item1/cp1-4.jpg" alt="Crafted Image 4" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 3)">
+                                        <img src="images/item1/cp1-5.jpg" alt="Crafted Image 5" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 4)">
                                     </div>
                                     <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
                                     <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
@@ -173,13 +192,13 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-center mb-2">Crafted</h3>
-                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                <div class="slider-container w-full h-[300px] rounded-lg" data-current-index="0">
                                     <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
-                                            onclick="openCurrentImage(this.parentNode)">
+                                            onclick="openSliderInFullscreen(this.parentNode)">
                                         <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
                                     </button>
                                     <div class="slider-images flex h-full">
-                                        <img src="images/item2/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item2/cp1.jpg')">
+                                        <img src="images/item2/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 0)">
                                     </div>
                                     <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
                                     <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
@@ -198,14 +217,14 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-center mb-2">Crafted</h3>
-                                <div class="slider-container w-full h-[300px] rounded-lg">
+                                <div class="slider-container w-full h-[300px] rounded-lg" data-current-index="0">
                                     <button class="absolute top-2 right-2 p-2 bg-white rounded-full z-20 hover:bg-gray-200 transition-colors"
-                                            onclick="openCurrentImage(this.parentNode)">
+                                            onclick="openSliderInFullscreen(this.parentNode)">
                                             <img src="images/expand.png" alt="Expand" class="w-5 h-5 object-contain" />
                                         </button>
                                     <div class="slider-images flex h-full">
-                                        <img src="images/item3/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openFullscreen('images/item3/cp1.jpg')">
-                                        <img src="images/item3/cp2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openFullscreen('images/item3/cp2.jpg')">
+                                        <img src="images/item3/cp1.jpg" alt="Crafted Image 1" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 0)">
+                                        <img src="images/item3/cp2.jpg" alt="Crafted Image 2" class="rounded-lg" onclick="openSliderInFullscreen(this.parentNode.parentNode, 1)">
                                     </div>
                                     <button class="slider-button prev" onclick="moveSlide(this.parentNode, -1)">&#10094;</button>
                                     <button class="slider-button next" onclick="moveSlide(this.parentNode, 1)">&#10095;</button>
@@ -232,7 +251,7 @@
                             <span>WhatsApp Me</span>
                         </a>
                         
-                        <a href="mailto:prinsbhuva2004@gmail.com" class="contact-link-hover flex items-center justify-center space-x-3 bg-green-500 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                        <a href="mailto:prinsbhuva2004@gmail.com" class="contact-link-hover flex items-center justify-center space-x-3 bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                             <span>Mail Me</span>
                         </a>
                     </div>
@@ -249,55 +268,104 @@
     </footer>
 
     <div id="fullscreenModal" class="fullscreen-modal hidden">
-        <button id="closeModal" class="absolute top-4 right-6 text-white text-4xl font-light leading-none z-10">&times;</button>
-        <img id="fullscreenImage" src="" alt="Fullscreen AI Image">
+        <button id="closeModal" class="absolute top-4 right-6 text-white text-4xl font-light leading-none z-50">&times;</button>
+        <div class="fullscreen-content">
+            <div class="fullscreen-slider-container">
+                <div id="fullscreenSliderImages" class="fullscreen-slider-images">
+                    </div>
+            </div>
+            <button class="slider-button prev" id="fullscreenPrev">&#10094;</button>
+            <button class="slider-button next" id="fullscreenNext">&#10095;</button>
+        </div>
     </div>
 
     <script>
-        // JS for the image sliders
+        // --- Page Slider Logic ---
         function moveSlide(sliderContainer, direction) {
             const sliderImages = sliderContainer.querySelector('.slider-images');
             const images = sliderImages.querySelectorAll('img');
             const totalImages = images.length;
-            const currentTransform = sliderImages.style.transform;
-            let currentImageIndex = 0;
 
-            if (currentTransform) {
-                const regex = /translateX\(([-\d.]+)%\)/;
-                const match = currentTransform.match(regex);
-                if (match) {
-                    const transformValue = parseFloat(match[1]);
-                    currentImageIndex = -transformValue / 100;
-                }
-            }
+            let currentIndex = parseInt(sliderContainer.dataset.currentIndex || '0');
+            
+            let newIndex = currentIndex + direction;
 
-            let newIndex = currentImageIndex + direction;
             if (newIndex >= totalImages) {
                 newIndex = 0; // Loop to the first image
             } else if (newIndex < 0) {
                 newIndex = totalImages - 1; // Loop to the last image
             }
 
+            sliderContainer.dataset.currentIndex = newIndex;
             sliderImages.style.transform = `translateX(${-newIndex * 100}%)`;
         }
 
-        // JS for the full-screen modal
+        // --- Fullscreen Modal Slider Logic ---
         const fullscreenModal = document.getElementById('fullscreenModal');
-        const fullscreenImage = document.getElementById('fullscreenImage');
+        const fullscreenSliderImages = document.getElementById('fullscreenSliderImages');
         const closeModalButton = document.getElementById('closeModal');
+        const fullscreenPrevButton = document.getElementById('fullscreenPrev');
+        const fullscreenNextButton = document.getElementById('fullscreenNext');
 
-        function openFullscreen(imageUrl) {
-            fullscreenImage.src = imageUrl;
+        let currentFullscreenSources = [];
+        let currentFullscreenIndex = 0;
+
+        function openSliderInFullscreen(sliderContainer, startIndex = -1) {
+            const images = sliderContainer.querySelectorAll('.slider-images img');
+            currentFullscreenSources = Array.from(images).map(img => img.src);
+            
+            if (startIndex === -1) {
+                // If opened via expand button, use the slider's current index
+                currentFullscreenIndex = parseInt(sliderContainer.dataset.currentIndex || '0');
+            } else {
+                // If opened via image click, use the provided start index
+                currentFullscreenIndex = startIndex;
+            }
+            
+            updateFullscreenSlider();
             fullscreenModal.classList.remove('hidden');
+        }
+
+        function updateFullscreenSlider() {
+            fullscreenSliderImages.innerHTML = ''; // Clear previous images
+            currentFullscreenSources.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                fullscreenSliderImages.appendChild(img);
+            });
+            fullscreenSliderImages.style.transition = 'none'; // Prevent transition on load
+            fullscreenSliderImages.style.transform = `translateX(${-currentFullscreenIndex * 100}%)`;
+            // Re-enable transition after a short delay
+            setTimeout(() => {
+                fullscreenSliderImages.style.transition = 'transform 0.5s ease-in-out';
+            }, 50);
+        }
+
+        function moveFullscreenSlide(direction) {
+            const totalImages = currentFullscreenSources.length;
+            let newIndex = currentFullscreenIndex + direction;
+
+            if (newIndex >= totalImages) {
+                newIndex = 0;
+            } else if (newIndex < 0) {
+                newIndex = totalImages - 1;
+            }
+            currentFullscreenIndex = newIndex;
+            fullscreenSliderImages.style.transform = `translateX(${-currentFullscreenIndex * 100}%)`;
         }
 
         function closeFullscreen() {
             fullscreenModal.classList.add('hidden');
+            fullscreenSliderImages.innerHTML = ''; // Clean up
+            currentFullscreenSources = [];
         }
 
+        // --- Event Listeners ---
         closeModalButton.addEventListener('click', closeFullscreen);
+        fullscreenPrevButton.addEventListener('click', () => moveFullscreenSlide(-1));
+        fullscreenNextButton.addEventListener('click', () => moveFullscreenSlide(1));
 
-        // Close modal when clicking outside the image
+        // Close modal when clicking the background
         fullscreenModal.addEventListener('click', (e) => {
             if (e.target === fullscreenModal) {
                 closeFullscreen();
@@ -306,28 +374,10 @@
 
         // Close modal on ESC key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' && !fullscreenModal.classList.contains('hidden')) {
                 closeFullscreen();
             }
         });
-
-        // Track current slide index for each slider
-        let currentSlideIndex = 0;
-
-        function moveSlide(container, step) {
-            const images = container.querySelectorAll('.slider-images img');
-            const total = images.length;
-            currentSlideIndex = (currentSlideIndex + step + total) % total;
-
-            // shift images
-            container.querySelector('.slider-images').style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-        }
-
-        function openCurrentImage(container) {
-            const images = container.querySelectorAll('.slider-images img');
-            const img = images[currentSlideIndex];
-            openFullscreen(img.src);
-        }
     </script>
 </body>
 </html>
